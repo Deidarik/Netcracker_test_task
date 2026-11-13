@@ -181,9 +181,9 @@ public class EnrollmentService {
 
             enrollment.setStatus(EnrollmentStatus.COMPLETED);
             enrollment.setCompletedAt(LocalDateTime.now());
+            certificateService.issueCertificate(enrollment);
         }
 
-        certificateService.issueCertificate(enrollment);
 
         return percent;
     }
