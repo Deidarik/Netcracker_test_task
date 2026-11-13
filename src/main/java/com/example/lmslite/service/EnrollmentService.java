@@ -16,7 +16,6 @@ import com.example.lmslite.exception.LessonNotFoundException;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -183,9 +181,9 @@ public class EnrollmentService {
 
             enrollment.setStatus(EnrollmentStatus.COMPLETED);
             enrollment.setCompletedAt(LocalDateTime.now());
+            certificateService.issueCertificate(enrollment);
         }
 
-        certificateService.issueCertificate(enrollment);
 
         return percent;
     }
